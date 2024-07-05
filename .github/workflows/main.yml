@@ -1,7 +1,22 @@
-name: CI
-on: push
+name: update
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - syncrhonize
 jobs:
-  build:
+  update:
+    name: Update Snapshots
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      CI: "true"
+      HEAD_REF: ${{ github.event.pull_request.head.ref }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Set git identity
+      - run: |-
+          git config user.name "test-user"
+          git push origin HEAD:$HEAD_REF
+      
