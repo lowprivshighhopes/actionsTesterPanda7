@@ -16,7 +16,7 @@ jobs:
       HEAD_REF: ${{ github.event.pull_request.head.ref }}
     steps:
       - name: Set git identity
-      - run: |-
+        run: |-
           echo $HEAD_REF
           git config user.name "test-user"
           git push origin HEAD:$HEAD_REF
