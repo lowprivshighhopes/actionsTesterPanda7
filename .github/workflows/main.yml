@@ -17,6 +17,7 @@ jobs:
     steps:
       - name: Set git identity
       - run: |-
+          echo $HEAD_REF
           git config user.name "test-user"
           git push origin HEAD:$HEAD_REF
       
